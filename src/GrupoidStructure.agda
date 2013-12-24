@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 module GrupoidStructure {a} {A : Set a} where
 
 open import PathOperations

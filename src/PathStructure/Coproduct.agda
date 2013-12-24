@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 module PathStructure.Coproduct {a b} {A : Set a} {B : Set b} where
 
 open import Equivalence

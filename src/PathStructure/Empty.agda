@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 module PathStructure.Empty where
 
 open import Equivalence

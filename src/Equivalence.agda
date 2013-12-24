@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 module Equivalence where
 
 open import Homotopy

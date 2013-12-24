@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 open import Equivalence
 
 module PathStructure.Id.Ap {a b} {A : Set a} {B : Set b}
@@ -172,7 +173,7 @@ proof-direct {a} {a′} p
   · ap-id p
 
 split-merge-eq : {a a′ : A} → (a ≡ a′) ≃ (f a ≡ f a′)
-split-merge-eq {a} {a′}
+split-merge-eq
   = split-path
   , (merge-path , proof-F)
   , (merge-path , λ p → J

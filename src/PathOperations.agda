@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 module PathOperations where
 
 open import Types

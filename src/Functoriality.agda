@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 module Functoriality {a} {A : Set a} where
 
 open import PathOperations

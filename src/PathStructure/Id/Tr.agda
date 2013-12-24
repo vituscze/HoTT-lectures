@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 module PathStructure.Id.Tr where
 
 open import GrupoidStructure
