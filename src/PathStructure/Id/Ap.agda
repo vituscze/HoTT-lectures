@@ -29,20 +29,24 @@ F b b′ p =
 F-lemma : ∀ b → F b b refl
 F-lemma b = ap (ap f)
     ( ap (λ y → β (g b) ⁻¹ · y)
-       (id·p (β (g b)))
+       (id·p _)
     · p⁻¹·p (β (g b))
     )
 
 ap-β-lem : ∀ a → ap (g ∘ f) (β a) ≡ β (g (f a))
 ap-β-lem a
-  = p·id (ap (g ∘ f) (β a)) ⁻¹
-  · ap (λ y → ap (g ∘ f) (β a) · y) (p·p⁻¹ (β a) ⁻¹)
+  = p·id _ ⁻¹
+  · ap (λ y → ap (g ∘ f) (β a) · y)
+    (p·p⁻¹ (β a) ⁻¹)
   · p·q·r (ap (g ∘ f) (β a)) (β a) (β a ⁻¹)
-  · ap (λ y → y · β a ⁻¹) (naturality _ _ β (β a) ⁻¹)
-  · ap (λ y → (β (g (f a)) · y) · β a ⁻¹) (ap-id (β a))
+  · ap (λ y → y · β a ⁻¹)
+    (naturality _ _ β (β a) ⁻¹)
+  · ap (λ y → (β (g (f a)) · y) · β a ⁻¹)
+    (ap-id _)
   · p·q·r (β (g (f a))) (β a) (β a ⁻¹) ⁻¹
-  · ap (λ y → β (g (f a)) · y) (p·p⁻¹ (β a))
-  · p·id (β (g (f a)))
+  · ap (λ y → β (g (f a)) · y)
+    (p·p⁻¹ (β a))
+  · p·id _
 
 add-right : ∀ {a} {A : Set a} {a₁ a₂ a₃ : B} (p q : a₁ ≡ a₂) (r : a₂ ≡ a₃) →
   (p ≡ q) ≡ (p · r ≡ q · r)
@@ -62,18 +66,6 @@ add-left {a₃ = a₃} p q r = J
       (tr (λ x → (p ≡ q) ≡ (x        ≡ q)) (id·p p ⁻¹) refl))
   _ _ r p q
 
-ap-right : ∀ {a} {A : Set a} {a a′ : A} (p q r : a ≡ a′) →
-  q ≡ r → (p ≡ q) ≡ (p ≡ r)
-ap-right p q r qr = J
-  (λ q r _ → (p ≡ q) ≡ (p ≡ r))
-  (λ _ → refl) _ _ qr
-
-ap-left : ∀ {a} {A : Set a} {a a′ : A} (p q r : a ≡ a′) →
-  p ≡ r → (p ≡ q) ≡ (r ≡ q)
-ap-left p q r pr = J
-  (λ p r _ → (p ≡ q) ≡ (r ≡ q))
-  (λ _ → refl) _ _ pr
-
 F-tr : ∀ a a′ (q : f a ≡ f a′) →
   F (f a) (f a′) q ≡ (ap f (β a ⁻¹ · ap g q · β a′) ≡ q)
 F-tr a a′ q =
@@ -81,28 +73,26 @@ F-tr a a′ q =
    (ap f (β a ⁻¹ · ap g q · β a′)) q (α (f a))
  · add-right {A = A}
    (α (f a) · ap f (β a ⁻¹ · ap g q · β a′)) (α (f a) · q) (α (f a′) ⁻¹)
- · ap-right
-   ((α (f a) · ap f (β a ⁻¹ · ap g q · β a′)) · α (f a′) ⁻¹)
-   ((α (f a) · q) · α (f a′) ⁻¹)
-   (ap (f ∘ g) q)
-   ( ap (λ y → (α (f a) · y) · α (f a′) ⁻¹) (ap-id q ⁻¹)
-   · ap (λ y → y · α (f a′) ⁻¹) (naturality _ _ α q)
+ · ap (λ x → (α (f a) · ap f (β a ⁻¹ · ap g q · β a′)) · α (f a′) ⁻¹ ≡ x)
+   ( ap (λ y → (α (f a) · y) · α (f a′) ⁻¹)
+     (ap-id _ ⁻¹)
+   · ap (λ y → y · α (f a′) ⁻¹)
+     (naturality _ _ α q)
    · p·q·r (ap (f ∘ g) q) (α (f a′)) (α (f a′) ⁻¹) ⁻¹
-   · ap (λ y → ap (f ∘ g) q · y) (p·p⁻¹ (α (f a′)))
-   · p·id (ap (f ∘ g) q)
+   · ap (λ y → ap (f ∘ g) q · y)
+     (p·p⁻¹ (α (f a′)))
+   · p·id _
    )
- · ap-left
-   ((α (f a) · ap f (β a ⁻¹ · ap g q · β a′)) · α (f a′) ⁻¹)
-   (ap (f ∘ g) q)
-   (ap f (β (g (f a)) ⁻¹ · ap g (ap (f ∘ g) q) · β (g (f a′))))
-   ( ap (λ y → (α (f a) · y) · α (f a′) ⁻¹) (ap-id _ ⁻¹)
+ · ap (λ x → x ≡ ap (f ∘ g) q)
+   ( ap (λ y → (α (f a) · y) · α (f a′) ⁻¹)
+     (ap-id _ ⁻¹)
    · ap (λ y → y · α (f a′) ⁻¹)
      (naturality _ _ α (ap f (β a ⁻¹ · ap g q · β a′)))
    · p·q·r (ap (f ∘ g) (ap f (β a ⁻¹ · ap g q · β a′)))
      (α (f a′)) (α (f a′) ⁻¹) ⁻¹
    · ap (λ y → ap (f ∘ g) (ap f (β a ⁻¹ · ap g q · β a′)) · y)
      (p·p⁻¹ (α (f a′)))
-   · p·id (ap (f ∘ g) (ap f (β a ⁻¹ · ap g q · β a′)))
+   · p·id _
    · ap-∘ f g (ap f (β a ⁻¹ · ap g q · β a′))
    · ap (ap f)
      ( ap-∘ g f (β a ⁻¹ · ap g q · β a′) ⁻¹
@@ -117,7 +107,8 @@ F-tr a a′ q =
        (ap-β-lem a′)
      · ap (λ y → β (g (f a)) ⁻¹ · y · β (g (f a′)))
        ( ap-∘ g f (ap g q)
-       · ap (ap g) (ap-∘ f g q ⁻¹)
+       · ap (ap g)
+         (ap-∘ f g q ⁻¹)
        )
      )
    )
@@ -131,37 +122,37 @@ proof-direct : {a a′ : A} → split-path ∘ merge-path {a} {a′} ∼ id
 proof-direct {a} {a′} p
   = ap (ap f)
     (p·q·r (β a ⁻¹) (ap g p) (β a′))
-  · id·p (ap f ((β a ⁻¹ · ap g p) · β a′)) ⁻¹
+  · id·p _ ⁻¹
   · ap (λ y → y · ap f ((β a ⁻¹ · ap g p) · β a′))
     (p⁻¹·p (α (f a)) ⁻¹)
   · p·q·r (α (f a) ⁻¹) (α (f a)) (ap f ((β a ⁻¹ · ap g p) · β a′)) ⁻¹
   · ap (λ y → α (f a) ⁻¹ · α (f a) · y)
-    (ap-id (ap f ((β a ⁻¹ · ap g p) · β a′)) ⁻¹)
+    (ap-id _ ⁻¹)
   · ap (λ y → α (f a) ⁻¹ · y)
     (naturality _ _ α (ap f ((β a ⁻¹ · ap g p) · β a′)))
   · ap (λ y → α (f a) ⁻¹ · y · α (f a′))
     ( ap-∘ f g (ap f ((β a ⁻¹ · ap g p) · β a′))
     · ap (ap f)
       ( ap-∘ g f ((β a ⁻¹ · ap g p) · β a′) ⁻¹
-      · p·id (ap (g ∘ f) ((β a ⁻¹ · ap g p) · β a′)) ⁻¹
+      · p·id _ ⁻¹
       · ap (λ y → ap (g ∘ f) ((β a ⁻¹ · ap g p) · β a′) · y)
         (p·p⁻¹ (β a′) ⁻¹)
       · p·q·r (ap (g ∘ f) ((β a ⁻¹ · ap g p) · β a′)) (β a′) (β a′ ⁻¹)
       · ap (λ y → y · β a′ ⁻¹)
         ( naturality _ _ β ((β a ⁻¹ · ap g p) · β a′) ⁻¹
         · ap (λ y → β a · y)
-          (ap-id ((β a ⁻¹ · ap g p) · β a′))
+          (ap-id _)
         )
       · ap (λ y → y · β a′ ⁻¹)
         (p·q·r (β a) (β a ⁻¹ · ap g p) (β a′))
       · p·q·r (β a · β a ⁻¹ · ap g p) (β a′) (β a′ ⁻¹) ⁻¹
       · ap (λ y → (β a · β a ⁻¹ · ap g p) · y)
         (p·p⁻¹ (β a′))
-      · p·id (β a · β a ⁻¹ · ap g p)
+      · p·id _
       · p·q·r (β a) (β a ⁻¹) (ap g p)
       · ap (λ y → y · ap g p)
         (p·p⁻¹ (β a))
-      · id·p (ap g p)
+      · id·p _
       )
     · ap-∘ f g p ⁻¹
     )
@@ -170,7 +161,7 @@ proof-direct {a} {a′} p
   · p·q·r (α (f a) ⁻¹) (α (f a)) (ap id p)
   · ap (λ y → y · ap id p)
     (p⁻¹·p (α (f a)))
-  · ap-id p
+  · ap-id _
 
 split-merge-eq : {a a′ : A} → (a ≡ a′) ≃ (f a ≡ f a′)
 split-merge-eq
