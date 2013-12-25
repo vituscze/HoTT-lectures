@@ -61,6 +61,14 @@ case : ∀ {a b p} {A : Set a} {B : Set b} (P : A ⊎ B → Set p)
 case P f g (inl a) = f a
 case P f g (inr b) = g b
 
+-- Simga as a positive type.
+data Σ′ {a b} (A : Set a) (B : A → Set b) : Set (a ⊔ b) where
+  _,_ : (a : A) → B a → Σ′ A B
+
+split : ∀ {a b p} {A : Set a} {B : A → Set b} (P : Σ′ A B → Set p)
+  (f : (a : A) (b : B a) → P (a , b)) → ∀ z → P z
+split P f (a , b) = f a b
+
 -- Natural numbers.
 data ℕ : Set where
   zero : ℕ
