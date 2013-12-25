@@ -16,7 +16,7 @@ ap₂-dep f p q = J
 
 split-path : {x y : Σ A B} →
   x ≡ y → Σ (π₁ x ≡ π₁ y) (λ p → tr B p (π₂ x) ≡ π₂ y)
-split-path {x = x} p = ap π₁ p , tr-∘ {P = B} π₁ p (π₂ x) ⁻¹ · dap π₂ p
+split-path {x = x} p = ap π₁ p , tr-∘ π₁ p (π₂ x) ⁻¹ · dap π₂ p
 
 merge-path : {x y : Σ A B} →
   Σ (π₁ x ≡ π₁ y) (λ p → tr B p (π₂ x) ≡ π₂ y) → x ≡ y
