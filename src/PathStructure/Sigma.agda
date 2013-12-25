@@ -6,13 +6,31 @@ open import PathOperations
 open import Transport
 open import Types
 
-ap₂-dep : ∀ {c} {C : Set c} {x x′ : A} {y : B x} {y′ : B x′}
+ap₂-dep : ∀ {a b c} {A : Set a} {B : A → Set b} {C : Set c}
+  {x x′ : A} {y : B x} {y′ : B x′}
   (f : (a : A) (b : B a) → C) (p : x ≡ x′) (q : tr B p y ≡ y′) →
   f x y ≡ f x′ y′
-ap₂-dep f p q = J
+ap₂-dep {B = B} f p q = J
   (λ x x′ p → (y : B x) (y′ : B x′) (q : tr B p y ≡ y′) → f x y ≡ f x′ y′)
   (λ x _ _ q → ap (f x) q)
   _ _ p _ _ q
+
+ap₂-dep-eq : ∀ {a b c} {A : Set a} {B : A → Set b} {C : Set c}
+  (f : (x : A) → B x → C)
+  {x x′ : A} (p p′ : x ≡ x′) (pp : p ≡ p′)
+  {y : B x} {y′ : B x′} (q : tr B p y ≡ y′) (q′ : tr B p′ y ≡ y′)
+  (qq : tr (λ z → tr B z y ≡ y′) pp q ≡ q′) →
+  ap₂-dep f p q ≡ ap₂-dep f p′ q′
+ap₂-dep-eq {B = B} f {x = x} {x′ = x′} p p′ pp q q′ qq = J
+  (λ p p′ pp → (y : B x) (y′ : B x′)
+    (q : tr B p y ≡ y′) (q′ : tr B p′ y ≡ y′)
+    (qq : tr (λ z → tr B z y ≡ y′) pp q ≡ q′) →
+    ap₂-dep f p q ≡ ap₂-dep f p′ q′)
+  (λ p _ _ q q′ qq → J
+    (λ q q′ qq → ap₂-dep f p q ≡ ap₂-dep f p q′)
+    (λ _ → refl)
+    _ _ qq)
+  _ _ pp _ _ _ _ qq
 
 split-path : {x y : Σ A B} →
   x ≡ y → Σ (π₁ x ≡ π₁ y) (λ p → tr B p (π₂ x) ≡ π₂ y)
