@@ -1,5 +1,5 @@
 {-# OPTIONS --without-K #-}
-module PathStructure.Id.Tr where
+module Transport where
 
 open import GrupoidStructure
 open import PathOperations
