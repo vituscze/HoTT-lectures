@@ -28,3 +28,11 @@ tr-eq p
       (λ _ _ p → (b b′ : B) (q : tr (λ _ → B) p b ≡ b′) →
         tr-merge p (tr-split p q) ≡ q)
       (λ _ _ _ _ → refl) _ _ p _ _ q)
+
+-- In presence of univalence axiom, this statement
+-- can also be proven from tr-eq.
+tr-≡ : {a a′ : A} {b b′ : B} (p : a ≡ a′) →
+  (tr (λ _ → B) p b ≡ b′) ≡ (b ≡ b′)
+tr-≡ {b = b} {b′ = b′} p = J
+  (λ _ _ p → (tr (λ _ → B) p b ≡ b′) ≡ (b ≡ b′))
+  (λ _ → refl) _ _ p
