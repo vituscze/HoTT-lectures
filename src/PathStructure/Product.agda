@@ -9,7 +9,7 @@ split-path : {x y : A × B} → x ≡ y → (π₁ x ≡ π₁ y) × (π₂ x �
 split-path p = ap π₁ p , ap π₂ p
 
 merge-path : {x₁ x₂ : A} {y₁ y₂ : B} →
-  (x₁ ≡ x₂) × (y₁ ≡ y₂) → (x₁ , y₁) ≡ (x₂ , y₂)
+  (x₁ ≡ x₂) × (y₁ ≡ y₂) → Id (A × B) (x₁ , y₁) (x₂ , y₂)
 merge-path (p , q) = ap₂ _,_ p q
 
 split-merge-eq : {x y : A × B} →
