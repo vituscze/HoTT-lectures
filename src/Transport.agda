@@ -28,3 +28,10 @@ tr-both a p q = J
   (λ x y p → (q : x ≡ x) → tr (λ x → x ≡ x) p q ≡ p ⁻¹ · q · p)
   (λ _ q → p·id q ⁻¹ · id·p (q · refl) ⁻¹)
   _ _ p q
+
+tr-∘ : ∀ {a b p} {A : Set a} {B : Set b} {P : B → Set p}
+  (f : A → B) {x y : A} (p : x ≡ y) (u : P (f x)) →
+  tr (P ∘ f) p u ≡ tr P (ap f p) u
+tr-∘ {P = P} f p u = J
+  (λ x _ p → (u : P (f x)) → tr (P ∘ f) p u ≡ tr P (ap f p) u)
+  (λ _ _ → refl) _ _ p u
