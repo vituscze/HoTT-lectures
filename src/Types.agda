@@ -77,6 +77,10 @@ ind P s z (suc n) = s n (ind P s z n)
 data _≡_ {a} {A : Set a} (x : A) : A → Set where
   refl : x ≡ x
 
+-- When the type cannot be infered.
+Id : ∀ {a} (A : Set a) (x y : A) → Set _
+Id _ x y = x ≡ y
+
 -- Path induction.
 J : ∀ {a p} {A : Set a} (P : ∀ (x : A) y → x ≡ y → Set p)
   (f : ∀ x → P x x refl) → ∀ x y → (p : x ≡ y) → P x y p
