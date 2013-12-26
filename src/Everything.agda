@@ -8,6 +8,11 @@ open import FunExt
 open import GrupoidStructure
 open import Homotopy
 open import HomotopyTypes
+open import HomotopyTypes.Coproduct
+open import HomotopyTypes.Empty
+open import HomotopyTypes.Product
+open import HomotopyTypes.Sigma
+open import HomotopyTypes.Unit
 open import J
 open import PathOperations
 open import PathStructure.Coproduct
