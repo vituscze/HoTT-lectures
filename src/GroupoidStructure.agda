@@ -1,5 +1,5 @@
 {-# OPTIONS --without-K #-}
-module GrupoidStructure {a} {A : Set a} where
+module GroupoidStructure {a} {A : Set a} where
 
 open import PathOperations
 open import Types

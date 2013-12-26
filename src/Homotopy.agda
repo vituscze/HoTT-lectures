@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K #-}
 module Homotopy where
 
-open import GrupoidStructure
+open import GroupoidStructure
 open import PathOperations
 open import Types
 

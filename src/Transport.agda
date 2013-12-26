@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K #-}
 module Transport where
 
-open import GrupoidStructure
+open import GroupoidStructure
 open import PathOperations
 open import Types
 

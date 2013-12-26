@@ -3,7 +3,7 @@ open import Types
 
 module J {a c} {A : Set a} (C : (x y : A) → x ≡ y → Set c) where
 
-open import GrupoidStructure
+open import GroupoidStructure
 open import PathOperations
 open import PathStructure.Sigma
 open import Transport

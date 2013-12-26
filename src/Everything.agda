@@ -5,7 +5,7 @@ open import Equivalence
 open import Functoriality
 open import HIT.Interval
 open import FunExt
-open import GrupoidStructure
+open import GroupoidStructure
 open import Homotopy
 open import HomotopyTypes
 open import HomotopyTypes.Coproduct

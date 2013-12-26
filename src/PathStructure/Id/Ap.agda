@@ -5,7 +5,7 @@ module PathStructure.Id.Ap {a b} {A : Set a} {B : Set b}
   (f : A → B) (qi : qinv f) where
 
 open import Functoriality
-open import GrupoidStructure
+open import GroupoidStructure
 open import Homotopy
 open import PathOperations
 open import Types
