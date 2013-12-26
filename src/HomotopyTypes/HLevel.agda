@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K #-}
 module HomotopyTypes.HLevel where
 
-open import GrupoidStructure
+open import GroupoidStructure
 open import HomotopyTypes
 open import HomotopyTypes.Contractible
 open import PathOperations
