@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 module HomotopyTypes.Empty where
 
 open import HomotopyTypes

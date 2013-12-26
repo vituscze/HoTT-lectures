@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 module HomotopyTypes.Coproduct where
 
 open import HomotopyTypes

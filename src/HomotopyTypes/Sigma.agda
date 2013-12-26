@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 module HomotopyTypes.Sigma where
 
 open import HomotopyTypes
