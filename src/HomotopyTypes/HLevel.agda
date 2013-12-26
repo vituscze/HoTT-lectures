@@ -7,15 +7,15 @@ open import HomotopyTypes.Contractible
 open import PathOperations
 open import Types
 
-hLevel[_-2] : ℕ → ∀ {a} → Set a → Set a
-hLevel[ n -2] = ind (λ _ → Set _ → Set _)
+hLevel : ℕ → ∀ {a} → Set a → Set a
+hLevel n = ind (λ _ → Set _ → Set _)
   (λ _ r A → (x y : A) → r (x ≡ y))
   isContr
   n
 
-isProp→hLevel[-1] : ∀ {a} {A : Set a} →
-  isProp A → hLevel[ 1 -2] A
-isProp→hLevel[-1] {A = A} A-prop x y
+isProp→hLevel1 : ∀ {a} {A : Set a} →
+  isProp A → hLevel 1 A
+isProp→hLevel1 {A = A} A-prop x y
   = A-prop x y
   , path
   where
@@ -32,9 +32,9 @@ isProp→hLevel[-1] {A = A} A-prop x y
     _ _ p
 
 hLevel-suc : ∀ n {a} {A : Set a} →
-  hLevel[ n -2] A → hLevel[ suc n -2] A
+  hLevel n A → hLevel (suc n) A
 hLevel-suc n h = ind
-  (λ n → ∀ {A} → hLevel[ n -2] A → hLevel[ suc n -2] A)
+  (λ n → ∀ {A} → hLevel n A → hLevel (suc n) A)
   (λ _ r h x y → r (h x y))
-  (λ     h → isProp→hLevel[-1] λ x y → π₂ h x ⁻¹ · π₂ h y)
+  (λ     h → isProp→hLevel1 λ x y → π₂ h x ⁻¹ · π₂ h y)
   n h
