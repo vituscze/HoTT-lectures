@@ -108,7 +108,8 @@ prop-eq (f , (g , α) , (h , β)) A-prop x y =
     (λ y → (p q : inr b ≡ y) → p ≡ q)
     (λ _  p q → 0-elim _
       (lower (PCoproduct.split-path p)))
-    (λ b′ p q → split-eq p ⁻¹
+    (λ b′ p q
+      → split-eq p ⁻¹
       · ap (ap inr)
         (B-set _ _
           (lower (tr (F (inr b)) p (lift refl)))
