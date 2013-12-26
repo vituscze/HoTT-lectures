@@ -8,8 +8,10 @@ open import FunExt
 open import GroupoidStructure
 open import Homotopy
 open import HomotopyTypes
+open import HomotopyTypes.Contractible
 open import HomotopyTypes.Coproduct
 open import HomotopyTypes.Empty
+open import HomotopyTypes.HLevel
 open import HomotopyTypes.Product
 open import HomotopyTypes.Sigma
 open import HomotopyTypes.Unit
