@@ -84,7 +84,7 @@ ind P s z zero    = z
 ind P s z (suc n) = s n (ind P s z n)
 
 -- Identity type.
-data _≡_ {a} {A : Set a} (x : A) : A → Set where
+data _≡_ {a} {A : Set a} (x : A) : A → Set a where
   refl : x ≡ x
 
 -- When the type cannot be infered.

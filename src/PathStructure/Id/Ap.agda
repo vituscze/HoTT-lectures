@@ -21,7 +21,7 @@ split-path = ap f
 merge-path : {a a′ : A} → f a ≡ f a′ → a ≡ a′
 merge-path p = β _ ⁻¹ · ap g p · β _
 
-F : (b b′ : B) (p : b ≡ b′) →  Set
+F : (b b′ : B) (p : b ≡ b′) → Set _
 F b b′ p =
     ap f (β (g b) ⁻¹ · ap g (ap (f ∘ g) p) · β (g b′))
   ≡ ap (f ∘ g) p

@@ -9,9 +9,15 @@ open import Types
 -- cumulative universes.
 F : A ⊎ B → A ⊎ B → Set (a ⊔ b)
 F x y =
-  case (λ _ → A ⊎ B → Set _)
-  (λ a y → case (λ _ → Set _) (λ a′ → Lift (a ≡ a′)) (λ _ → Lift ⊥) y)
-  (λ b y → case (λ _ → Set _) (λ _ → Lift ⊥) (λ b′ → Lift (b ≡ b′)) y)
+  case (λ _ → A ⊎ B → Set (a ⊔ b))
+  (λ a₁ y → case (λ _ → Set (a ⊔ b))
+    (λ a₂ → Lift {ℓ = b} (a₁ ≡ a₂))
+    (λ _ → Lift ⊥)
+    y)
+  (λ b₁ y → case (λ _ → Set (a ⊔ b))
+    (λ _ → Lift ⊥)
+    (λ b₂ → Lift {ℓ = a} (b₁ ≡ b₂))
+    y)
   x y
 
 F-lemma : (x : A ⊎ B) → F x x
