@@ -5,9 +5,9 @@ open import PathOperations
 open import PathStructure.Id.Tr
 open import Types
 
-funext : ∀ {a b} {A : Set a} {B : A → Set b} (f g : (x : A) → B x) →
+funext : ∀ {a b} {A : Set a} {B : A → Set b} {f g : (x : A) → B x} →
   (∀ x → f x ≡ g x) → f ≡ g
-funext {A = A} {B = B} f g p = ap h seg
+funext {A = A} {B = B} {f = f} {g = g} p = ap h seg
   where
     h : I → (x : A) → B x
     h i x = I-rec (λ _ → B x)
