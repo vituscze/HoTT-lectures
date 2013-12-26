@@ -74,6 +74,8 @@ data ℕ : Set where
   zero : ℕ
   suc  : ℕ → ℕ
 
+{-# BUILTIN NATURAL ℕ #-}
+
 ind : ∀ {p} (P : ℕ → Set p)
   (s : ∀ n → P n → P (suc n))
   (z : P zero) →
