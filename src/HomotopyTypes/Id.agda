@@ -4,6 +4,7 @@ module HomotopyTypes.Id where
 open import GroupoidStructure
 open import HomotopyTypes
 open import PathOperations
+open import Transport
 open import Types
 
 -- This should also be derivable from hLevel-suc from
@@ -25,3 +26,24 @@ Id-isSet {x = x} {y = y} A-set p q pp qq
     (λ p q pp → A-set _ _ p q ≡ pp)
     (λ p → split-path (A-set _ _ p p ⁻¹) · p⁻¹·p (A-set _ _ p p))
     _ _ pp
+
+-- From the lectures.
+Id-isSet-alt : ∀ {a} {A : Set a} {u v : A} →
+  isSet A → isSet (u ≡ v)
+Id-isSet-alt {u = u} {v = v} H r s α β
+  = id·p α ⁻¹
+  · ap (λ z → z · α)
+    (p⁻¹·p (H′ r)) ⁻¹
+  · p·q·r (H′ r ⁻¹) (H′ r) α ⁻¹
+  · ap (λ z → H′ r ⁻¹ · z)
+    ( tr-post r α (H′ r) ⁻¹
+    · dap H′ α
+    · dap H′ β ⁻¹
+    · tr-post r β (H′ r)
+    )
+  · p·q·r (H′ r ⁻¹) (H′ r) β
+  · ap (λ z → z · β)
+    (p⁻¹·p (H′ r))
+  · id·p β
+  where
+    H′ = λ q → H u v r q
