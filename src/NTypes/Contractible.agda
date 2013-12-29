@@ -1,5 +1,5 @@
 {-# OPTIONS --without-K #-}
-module HomotopyTypes.Contractible where
+module NTypes.Contractible where
 
 open import Types
 

@@ -1,8 +1,8 @@
 {-# OPTIONS --without-K #-}
-module HomotopyTypes.Id where
+module NTypes.Id where
 
 open import GroupoidStructure
-open import HomotopyTypes
+open import NTypes
 open import PathOperations
 open import Transport
 open import Types

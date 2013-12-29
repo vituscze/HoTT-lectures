@@ -1,8 +1,8 @@
 {-# OPTIONS --without-K #-}
-module HomotopyTypes.Unit where
+module NTypes.Unit where
 
 open import Equivalence
-open import HomotopyTypes
+open import NTypes
 open import PathStructure.Unit
 open import Types
 

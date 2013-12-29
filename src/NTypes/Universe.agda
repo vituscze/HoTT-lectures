@@ -1,8 +1,8 @@
 {-# OPTIONS --without-K #-}
-module HomotopyTypes.Universe where
+module NTypes.Universe where
 
 open import Equivalence
-open import HomotopyTypes
+open import NTypes
 open import PathOperations
 open import PathStructure.Coproduct
 open import Types

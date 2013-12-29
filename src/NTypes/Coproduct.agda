@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K #-}
-module HomotopyTypes.Coproduct where
+module NTypes.Coproduct where
 
-open import HomotopyTypes
+open import NTypes
 open import PathOperations
 open import PathStructure.Coproduct
 open import Types

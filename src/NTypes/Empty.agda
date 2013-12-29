@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K #-}
-module HomotopyTypes.Empty where
+module NTypes.Empty where
 
-open import HomotopyTypes
+open import NTypes
 open import Types
 
 0-isSet : isSet ⊥

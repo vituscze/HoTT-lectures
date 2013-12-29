@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K #-}
-module HomotopyTypes.Sigma where
+module NTypes.Sigma where
 
-open import HomotopyTypes
+open import NTypes
 open import PathOperations
 open import PathStructure.Sigma
 open import Transport

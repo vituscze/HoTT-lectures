@@ -1,8 +1,8 @@
 {-# OPTIONS --without-K #-}
-module HomotopyTypes.DoubleNegation where
+module NTypes.DoubleNegation where
 
 open import FunExt
-open import HomotopyTypes
+open import NTypes
 open import Types
 
 ¬¬-prop : ∀ {a} {A : Set a} → isProp ((A → ⊥) → ⊥)

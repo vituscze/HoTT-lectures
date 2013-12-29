@@ -1,7 +1,7 @@
 {-# OPTIONS --without-K #-}
-module HomotopyTypes.Product where
+module NTypes.Product where
 
-open import HomotopyTypes
+open import NTypes
 open import PathOperations
 open import PathStructure.Product
 open import Types
