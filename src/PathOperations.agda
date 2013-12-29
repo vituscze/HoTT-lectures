@@ -33,3 +33,7 @@ dap : ∀ {a b} {A : Set a} {B : A → Set b} {x y : A}
 dap {B = B} f p = J
   (λ x y p → tr B p (f x) ≡ f y)
   (λ _ → refl) _ _ p
+
+happly : ∀ {a b} {A : Set a} {B : A → Set b} {f g : (x : A) → B x} →
+  f ≡ g → ∀ x → f x ≡ g x
+happly p x = ap (λ f → f x) p
