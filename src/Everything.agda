@@ -17,6 +17,7 @@ open import HomotopyTypes.Nat
 open import HomotopyTypes.Product
 open import HomotopyTypes.Sigma
 open import HomotopyTypes.Unit
+open import HomotopyTypes.Universe
 open import J
 open import PathOperations
 open import PathStructure.Coproduct
@@ -31,3 +32,4 @@ open import PathStructure.UnitNoEta
 open import Sigma
 open import Transport
 open import Types
+open import Univalence
