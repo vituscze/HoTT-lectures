@@ -51,6 +51,6 @@ split-merge-eq
         (λ _ _ q → split-path (merge-path (refl , q)) ≡ refl , q)
         (λ _ → refl) _ _ q)
       _ _ (π₁ pq) _ _ (π₂ pq))
-  , (merge-path , λ p → J
+  , (merge-path , J
       (λ _ _ p → merge-path (split-path p) ≡ p)
-      (λ _ → refl) _ _ p)
+      (λ _ → refl) _ _)

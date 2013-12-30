@@ -14,6 +14,6 @@ split-merge-eq : {x y : ⊤} → (x ≡ y) ≃ ⊤
 split-merge-eq
   = split-path
   , (merge-path , λ _ → refl)
-  , (merge-path , λ p → J {A = ⊤}
+  , (merge-path , J {A = ⊤}
       (λ _ _ p → refl ≡ p)
-      (λ _ → refl) _ _ p)
+      (λ _ → refl) _ _)

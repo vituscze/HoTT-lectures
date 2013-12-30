@@ -15,10 +15,9 @@ dec : ∀ {a} → Set a → Set a
 dec A = A ⊎ ¬ A
 
 dec→stable : ∀ {a} {A : Set a} → dec A → stable A
-dec→stable {A = A} dec = case (λ _ → stable A)
+dec→stable {A = A} = case (λ _ → stable A)
   (λ  a   _ → a)
-  (λ ¬a ¬¬a → 0-elim _ (¬¬a ¬a))
-  dec
+  (λ ¬a ¬¬a → 0-elim (¬¬a ¬a))
 
 dec-eq : ∀ {a} → Set a → Set a
 dec-eq A = (x y : A) → dec (x ≡ y)
@@ -33,13 +32,13 @@ dec-eq→stable-eq dec x y = dec→stable (dec x y)
 lemma : ∀ {a b c} {A : Set a} {B : A → Set b} {C : A → Set c}
   {x y : A} (p : x ≡ y) (f : B x → C x) (g : B y → C y) →
   tr _ p f ≡ g → (b : B x) → tr _ p (f b) ≡ g (tr _ p b)
-lemma {B = B} {C = C} p f g f≡g = J
+lemma {B = B} {C = C} = J
   (λ x y p → (f : B x → C x) (g : B y → C y) →
     tr _ p f ≡ g → (b : B x) → tr _ p (f b) ≡ g (tr _ p b))
-  (λ _ _ _ → happly) _ _ p f g f≡g
+  (λ _ _ _ → happly) _ _
 
 stable-eq→set : ∀ {a} {A : Set a} → stable-eq A → isSet A
-stable-eq→set {A = A} h x y p q = J
+stable-eq→set {A = A} h _ _ p q = J
   (λ x y p → (q : x ≡ y) → q ≡ p)
   K _ _ q p
   where
@@ -59,4 +58,4 @@ stable-eq→set {A = A} h x y p q = J
     where
     -- Choice of r doesn't matter.
     r : ¬ ¬ (x ≡ x)
-    r = λ z → z refl
+    r c = c refl

@@ -19,7 +19,7 @@ isequiv {A = A} {B = B} f
   × (Σ (B → A) λ h → h ∘ f ∼ id)
 
 _≃_ : ∀ {a b} (A : Set a) (B : Set b) → Set _
-A ≃ B = Σ (A → B) λ f → isequiv f
+A ≃ B = Σ (A → B) isequiv
 
 qi→eq : ∀ {a b} {A : Set a} {B : Set b}
   {f : A → B} → qinv f → isequiv f

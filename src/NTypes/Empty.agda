@@ -5,4 +5,4 @@ open import NTypes
 open import Types
 
 0-isSet : isSet ⊥
-0-isSet x = 0-elim _ x
+0-isSet x = 0-elim x

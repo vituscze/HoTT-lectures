@@ -7,15 +7,15 @@ open import Types
 
 tr-split : {a a′ : A} {b b′ : B} (p : a ≡ a′) →
   tr (λ _ → B) p b ≡ b′ → b ≡ b′
-tr-split {b = b} {b′ = b′} p = J
+tr-split {b = b} {b′ = b′} = J
   (λ _ _ p → tr (λ _ → B) p b ≡ b′ → b ≡ b′)
-  (λ _ p → p) _ _ p
+  (λ _ p → p) _ _
 
 tr-merge : {a a′ : A} {b b′ : B} (p : a ≡ a′) →
   b ≡ b′ → tr (λ _ → B) p b ≡ b′
-tr-merge {b = b} {b′ = b′} p = J
+tr-merge {b = b} {b′ = b′} = J
   (λ _ _ p → b ≡ b′ → tr (λ _ → B) p b ≡ b′)
-  (λ _ p → p) _ _ p
+  (λ _ p → p) _ _
 
 tr-eq : {a a′ : A} {b b′ : B} (p : a ≡ a′) →
   (tr (λ _ → B) p b ≡ b′) ≃ (b ≡ b′)
@@ -33,6 +33,6 @@ tr-eq p
 -- can also be proven from tr-eq.
 tr-≡ : {a a′ : A} {b b′ : B} (p : a ≡ a′) →
   (tr (λ _ → B) p b ≡ b′) ≡ (b ≡ b′)
-tr-≡ {b = b} {b′ = b′} p = J
+tr-≡ {b = b} {b′ = b′} = J
   (λ _ _ p → (tr (λ _ → B) p b ≡ b′) ≡ (b ≡ b′))
-  (λ _ → refl) _ _ p
+  (λ _ → refl) _ _

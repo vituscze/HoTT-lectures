@@ -21,12 +21,12 @@ open import Types
         )
       · split-eq q
       )
-    (λ _  p q → 0-elim _
+    (λ _  p q → 0-elim
       (lower (split-path p)))
     y p q)
   (λ b y p q → case
     (λ y → (p q : inr b ≡ y) → p ≡ q)
-    (λ _  p q → 0-elim _
+    (λ _  p q → 0-elim
       (lower (split-path p)))
     (λ b′ p q
       → split-eq p ⁻¹

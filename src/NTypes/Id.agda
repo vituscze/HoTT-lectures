@@ -11,7 +11,7 @@ open import Types
 -- HomotopyTypes.HLevel module.
 Id-isSet : ∀ {a} {A : Set a} {x y : A} →
   isSet A → isSet (x ≡ y)
-Id-isSet {x = x} {y = y} A-set p q pp qq
+Id-isSet {x = x} {y = y} A-set _ _ pp qq
   = path pp ⁻¹ · path qq
   where
   split-path : {p q : x ≡ y} (pp : p ≡ q) →

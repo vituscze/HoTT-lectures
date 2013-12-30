@@ -23,7 +23,7 @@ open Σ public
 -- Projections are defined automatically.
 
 _×_ : ∀ {a b} → Set a → Set b → Set _
-A × B = Σ A (λ _ → B)
+A × B = Σ A λ _ → B
 
 -- Unit type with definitional η.
 record ⊤ : Set where
@@ -42,8 +42,8 @@ _∘_ : ∀ {a b c} {A : Set a} {B : A → Set b} {C : ∀ a → B a → Set c}
 data ⊥ : Set where
 
 -- Ex falso quodlibet.
-0-elim : ∀ {p} (P : Set p) → ⊥ → P
-0-elim P ()
+0-elim : ∀ {p} {P : Set p} → ⊥ → P
+0-elim ()
 
 ¬_ : ∀ {a} → Set a → Set a
 ¬ A = A → ⊥

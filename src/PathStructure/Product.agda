@@ -16,16 +16,13 @@ split-merge-eq : {x y : A × B} →
   (x ≡ y) ≃ (π₁ x ≡ π₁ y) × (π₂ x ≡ π₂ y)
 split-merge-eq
   = split-path
-  , ( merge-path
-    , λ pq → J
-        (λ _ _ p → ∀ {b₁ b₂} (q : b₁ ≡ b₂) →
-          split-path (merge-path (p , q)) ≡ p , q)
-        (λ _ q → J
-          (λ _ _ q →
-            split-path (merge-path (refl , q)) ≡ refl , q)
-          (λ _ → refl) _ _ q)
-        _ _ (π₁ pq) (π₂ pq)
-    )
-  , ( merge-path
-    , J (λ _ _ p → merge-path (split-path p) ≡ p) (λ _ → refl) _ _
-    )
+  , (merge-path , λ pq → J
+      (λ _ _ p → ∀ {b₁ b₂} (q : b₁ ≡ b₂) →
+        split-path (merge-path (p , q)) ≡ p , q)
+      (λ _ q → J
+        (λ _ _ q →
+          split-path (merge-path (refl , q)) ≡ refl , q)
+        (λ _ → refl) _ _ q)
+      _ _ (π₁ pq) (π₂ pq))
+  , (merge-path , J (λ _ _ p → merge-path (split-path p) ≡ p)
+      (λ _ → refl) _ _)

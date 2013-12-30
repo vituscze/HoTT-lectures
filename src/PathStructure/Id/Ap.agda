@@ -167,7 +167,7 @@ split-merge-eq : {a a′ : A} → (a ≡ a′) ≃ (f a ≡ f a′)
 split-merge-eq
   = split-path
   , (merge-path , proof-F)
-  , (merge-path , λ p → J
+  , (merge-path , J
       (λ _ _ p → merge-path (split-path p) ≡ p)
       (λ _ → p⁻¹·p (β _))
-      _ _ p)
+      _ _)
