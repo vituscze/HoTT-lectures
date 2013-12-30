@@ -1,7 +1,6 @@
 {-# OPTIONS --without-K #-}
 module NTypes.HedbergsTheorem where
 
-open import FunExt
 open import GroupoidStructure
 open import NTypes
 open import NTypes.Negation
