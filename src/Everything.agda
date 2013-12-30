@@ -11,10 +11,10 @@ open import J
 open import NTypes
 open import NTypes.Contractible
 open import NTypes.Coproduct
-open import NTypes.DoubleNegation
 open import NTypes.Empty
 open import NTypes.Id
 open import NTypes.Nat
+open import NTypes.Negation
 open import NTypes.Product
 open import NTypes.Sigma
 open import NTypes.Unit
