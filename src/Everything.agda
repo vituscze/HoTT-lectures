@@ -12,6 +12,7 @@ open import NTypes
 open import NTypes.Contractible
 open import NTypes.Coproduct
 open import NTypes.Empty
+open import NTypes.HedbergsTheorem
 open import NTypes.Id
 open import NTypes.Nat
 open import NTypes.Negation
