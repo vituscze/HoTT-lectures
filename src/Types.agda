@@ -6,7 +6,9 @@ open import Level
   public
 
 infix  1 _≡_
+infixr 1 _⊎_
 infixr 2 _×_
+infix  3 ¬_
 infixr 4 _,_
 infixr 9 _∘_
 
@@ -42,6 +44,9 @@ data ⊥ : Set where
 -- Ex falso quodlibet.
 0-elim : ∀ {p} (P : Set p) → ⊥ → P
 0-elim P ()
+
+¬_ : ∀ {a} → Set a → Set a
+¬ A = A → ⊥
 
 -- Unit type without definitional η.
 data Unit : Set where
