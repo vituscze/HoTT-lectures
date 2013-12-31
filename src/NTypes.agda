@@ -38,6 +38,7 @@ is-[ n -2]-type = ind (λ _ → Set _ → Set _)
   isContr
   n
 
+-- isProp and is-(-1)-type.
 prop→-1-type : ∀ {a} {A : Set a} →
   isProp A → is-[ 1 -2]-type A
 prop→-1-type {A = A} A-prop x y
@@ -56,6 +57,20 @@ prop→-1-type {A = A} A-prop x y
     (λ x → split-path (A-prop x x ⁻¹) · p⁻¹·p (A-prop x x))
     _ _
 
+-1-type→prop : ∀ {a} {A : Set a} →
+  is-[ 1 -2]-type A → isProp A
+-1-type→prop A-1 x y = π₁ (A-1 x y)
+
+-- isSet and is-0-type.
+set→0-type : ∀ {a} {A : Set a} →
+  isSet A → is-[ 2 -2]-type A
+set→0-type A-set x y = prop→-1-type (A-set x y)
+
+0-type→set : ∀ {a} {A : Set a} →
+  is-[ 2 -2]-type A → isSet A
+0-type→set A0 x y = -1-type→prop (A0 x y)
+
+-- Cumulativity.
 n-type-suc : ∀ n {a} {A : Set a} →
   is-[ n -2]-type A → is-[ suc n -2]-type A
 n-type-suc n = ind
