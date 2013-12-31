@@ -2,9 +2,11 @@
 module NTypes where
 
 open import Equivalence
+open import FunExt
 open import GroupoidStructure
 open import NTypes.Contractible
 open import PathOperations
+open import Transport
 open import Types
 
 isProp : ∀ {a} → Set a → Set _
@@ -36,9 +38,9 @@ is-[ n -2]-type = ind (λ _ → Set _ → Set _)
   isContr
   n
 
-isProp→-1-type : ∀ {a} {A : Set a} →
+prop→-1-type : ∀ {a} {A : Set a} →
   isProp A → is-[ 1 -2]-type A
-isProp→-1-type {A = A} A-prop x y
+prop→-1-type {A = A} A-prop x y
   = A-prop x y
   , path
   where
@@ -59,5 +61,40 @@ n-type-suc : ∀ n {a} {A : Set a} →
 n-type-suc n = ind
   (λ n → ∀ {A} → is-[ n -2]-type A → is-[ suc n -2]-type A)
   (λ _ r h x y → r (h x y))
-  (λ     h → isProp→-1-type λ x y → π₂ h x ⁻¹ · π₂ h y)
+  (λ     h → prop→-1-type λ x y → π₂ h x ⁻¹ · π₂ h y)
   n
+
+-- From lectures.
+prop→set : ∀ {a} {A : Set a} →
+  isProp A → isSet A
+prop→set A-prop x y p q = lem p · lem q ⁻¹
+  where
+  g : _
+  g = A-prop x
+
+  lem : (p : x ≡ y) → p ≡ g x ⁻¹ · g y
+  lem p
+    = id·p p ⁻¹
+    · ap (λ z → z · p)
+      (p⁻¹·p (g x)) ⁻¹
+    · p·q·r (g x ⁻¹) (g x) p ⁻¹
+    · ap (λ z → g x ⁻¹ · z)
+      ( tr-post x p (g x) ⁻¹
+      · dap g p
+      )
+
+isProp-is-prop : ∀ {a} {A : Set a} →
+  isProp (isProp A)
+isProp-is-prop f g =
+  funext λ x →
+  funext λ y →
+  prop→set f _ _ (f x y) (g x y)
+
+isSet-is-prop : ∀ {a} {A : Set a} →
+  isProp (isSet A)
+isSet-is-prop f g =
+  funext λ x →
+  funext λ y →
+  funext λ p →
+  funext λ q →
+  prop→set (f x y) _ _ (f x y p q) (g x y p q)
