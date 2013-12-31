@@ -33,7 +33,7 @@ module I-Definition where
     I-β : ∀ {p} (P : I → Set p)
       (xₒ : P 0ᵢ) (x₁ : P 1ᵢ)
       (p : tr P seg xₒ ≡ x₁) →
-      dap (I-rec P xₒ x₁ p) seg ≡ p
+      apd (I-rec P xₒ x₁ p) seg ≡ p
 
 open I-Definition public
 

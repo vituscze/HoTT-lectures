@@ -27,10 +27,10 @@ ap₂ : ∀ {a b c} {A : Set a}  {B : Set b} {C : Set c}
   f x y ≡ f x′ y′
 ap₂ f p q = ap (λ _ → f _ _) p · ap (f _) q
 
-dap : ∀ {a b} {A : Set a} {B : A → Set b} {x y : A}
+apd : ∀ {a b} {A : Set a} {B : A → Set b} {x y : A}
   (f : ∀ a → B a) (p : x ≡ y) →
   tr B p (f x) ≡ f y
-dap {B = B} f = J
+apd {B = B} f = J
   (λ x y p → tr B p (f x) ≡ f y)
   (λ _ → refl) _ _
 

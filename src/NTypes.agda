@@ -95,7 +95,7 @@ prop→set A-prop x y p q = lem p · lem q ⁻¹
     · p·q·r (g x ⁻¹) (g x) p ⁻¹
     · ap (λ z → g x ⁻¹ · z)
       ( tr-post x p (g x) ⁻¹
-      · dap g p
+      · apd g p
       )
 
 isProp-is-prop : ∀ {a} {A : Set a} →

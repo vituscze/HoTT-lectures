@@ -50,7 +50,7 @@ stable-eq→set {A = A} h _ _ p q = J
     · p·q·r (h x x r ⁻¹) (h x x r) p ⁻¹
     · ap (λ z → h x x r ⁻¹ · z)
       ( tr-post x p (h x x r) ⁻¹
-      · lemma p (h x x) (h x x) (dap (h x) p) r
+      · lemma p (h x x) (h x x) (apd (h x) p) r
       · ap (h x x)
         (¬-isProp (tr (λ v → ¬ ¬ (x ≡ v)) p r) r)
       )

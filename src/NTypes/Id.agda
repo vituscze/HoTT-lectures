@@ -37,8 +37,8 @@ Id-isSet-alt {u = u} {v = v} H r s α β
   · p·q·r (H′ r ⁻¹) (H′ r) α ⁻¹
   · ap (λ z → H′ r ⁻¹ · z)
     ( tr-post r α (H′ r) ⁻¹
-    · dap H′ α
-    · dap H′ β ⁻¹
+    · apd H′ α
+    · apd H′ β ⁻¹
     · tr-post r β (H′ r)
     )
   · p·q·r (H′ r ⁻¹) (H′ r) β
