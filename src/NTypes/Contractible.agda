@@ -15,3 +15,11 @@ contr→eq-⊤ h
 
 eq-⊤→contr : ∀ {a} {A : Set a} → A ≃ ⊤ → isContr A
 eq-⊤→contr (f , (g , α) , (h , β)) = h _ , β
+
+pp-space-contr : ∀ {a} {A : Set a} (x : A) →
+  isContr (Σ A λ y → x ≡ y)
+pp-space-contr {A = A} x
+  = (x , refl)
+  , λ y → J
+      (λ x y p → Id (Σ A (λ y → x ≡ y)) (x , refl) (y , p))
+      (λ _ → refl) _ _ (π₂ y)
