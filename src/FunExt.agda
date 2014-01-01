@@ -10,5 +10,4 @@ funext : ∀ {a b} {A : Set a} {B : A → Set b} {f g : (x : A) → B x} →
 funext {A = A} {B = B} {f = f} {g = g} p = ap h seg
   where
     h : I → (x : A) → B x
-    h i x = I-rec (λ _ → B x)
-      (f x) (g x) (tr id (tr-≡ seg ⁻¹) (p x)) i
+    h i x = I-rec (f x) (g x) (p x) i

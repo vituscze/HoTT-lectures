@@ -23,26 +23,34 @@ module I-Definition where
   postulate
     seg : 0ᵢ ≡ 1ᵢ
 
-  I-rec : ∀ {p} (P : I → Set p)
-    (xₒ : P 0ᵢ) (x₁ : P 1ᵢ) (p : tr P seg xₒ ≡ x₁) →
+  I-ind : ∀ {p} (P : I → Set p)
+    (x₀ : P 0ᵢ) (x₁ : P 1ᵢ) (p : tr P seg x₀ ≡ x₁) →
     ∀ i → P i
-  I-rec P xₒ x₁ p #0 = xₒ
-  I-rec P xₒ x₁ p #1 = x₁
+  I-ind P x₀ x₁ p #0 = x₀
+  I-ind P x₀ x₁ p #1 = x₁
 
   postulate
-    I-β : ∀ {p} (P : I → Set p)
-      (xₒ : P 0ᵢ) (x₁ : P 1ᵢ)
-      (p : tr P seg xₒ ≡ x₁) →
-      apd (I-rec P xₒ x₁ p) seg ≡ p
+    I-β-i : ∀ {p} (P : I → Set p)
+      (x₀ : P 0ᵢ) (x₁ : P 1ᵢ)
+      (p : tr P seg x₀ ≡ x₁) →
+      apd (I-ind P x₀ x₁ p) seg ≡ p
+
+  I-rec : ∀ {p} {P : Set p}
+    (x₀ x₁ : P) (p : x₀ ≡ x₁)
+    (i : I) → P
+  I-rec x₀ x₁ p #0 = x₀
+  I-rec x₀ x₁ p #1 = x₁
+
+  postulate
+    I-β-r : ∀ {p} {P : Set p}
+      (x₀ x₁ : P) (p : x₀ ≡ x₁) →
+      ap (I-rec x₀ x₁ p) seg ≡ p
 
 open I-Definition public
 
 from-path-space : ∀ {a} {A : Set a} →
   (Σ A λ x → Σ A λ y → x ≡ y) → I → A
-from-path-space z = I-rec _
-  (π₁ z)
-  (π₁ (π₂ z))
-  (tr id (tr-≡ seg ⁻¹) (π₂ (π₂ z)))
+from-path-space (x , y , p) = I-rec x y p
 
 to-path-space : ∀ {a} {A : Set a} →
   (I → A) → Σ A λ x → Σ A λ y → x ≡ y
