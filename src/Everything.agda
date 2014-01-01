@@ -3,6 +3,7 @@ module Everything where
 
 open import AC
 open import Equivalence
+open import Fiber
 open import Functoriality
 open import FunExt
 open import GroupoidStructure
