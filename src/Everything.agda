@@ -1,11 +1,12 @@
 {-# OPTIONS --without-K #-}
 module Everything where
 
+open import AC
 open import Equivalence
 open import Functoriality
-open import HIT.Interval
 open import FunExt
 open import GroupoidStructure
+open import HIT.Interval
 open import Homotopy
 open import J
 open import NTypes
