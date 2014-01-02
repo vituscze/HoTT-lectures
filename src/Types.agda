@@ -13,6 +13,9 @@ infixr 4 _,_
 infixr 9 _∘_
 
 -- The negative fragment.
+Π : ∀ {a b} (A : Set a) → (A → Set b) → Set _
+Π A B = (x : A) → B x
+
 record Σ {a b} (A : Set a) (B : A → Set b) : Set (a ⊔ b) where
   constructor _,_
   field
