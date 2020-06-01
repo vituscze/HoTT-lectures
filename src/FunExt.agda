@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 module FunExt where
 
 open import HIT.Interval

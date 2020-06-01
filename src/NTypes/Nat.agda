@@ -20,10 +20,13 @@ open import Types
             (tr (F (suc m-1)) q′ (F-lemma (suc m-1)))))
       · split-eq q′
       )
-    (λ p q → split-eq p ⁻¹ · split-eq q))
+    (λ p q → 0-elim (suc-zero-absurd p)))
   (ind (λ n → (p q : 0 ≡ n) → p ≡ q)
-    (λ _ _ p q → split-eq p ⁻¹ · split-eq q)
+    (λ _ _ p q → 0-elim (suc-zero-absurd (p ⁻¹)))
     (λ     p q → split-eq p ⁻¹ · split-eq q))
   where
   split-eq : {x y : ℕ} → _
   split-eq {x} {y} = π₂ (π₂ (π₂ (split-merge-eq {x} {y})))
+
+  suc-zero-absurd : {x : ℕ} → suc x ≡ zero → ⊥
+  suc-zero-absurd p = tr (ind (λ _ → Set) (λ _ _ → ⊤) ⊥) p tt

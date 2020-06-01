@@ -10,11 +10,11 @@ open import Types
 F : A ⊎ B → A ⊎ B → Set (a ⊔ b)
 F = case (λ _ → A ⊎ B → Set _)
   (λ a₁ → case (λ _ → Set _)
-    (λ a₂ → Lift {ℓ = b} (a₁ ≡ a₂))
-    (λ _ → Lift ⊥))
+    (λ a₂ → Lift b (a₁ ≡ a₂))
+    (λ _ → Lift _ ⊥))
   (λ b₁ → case (λ _ → Set _)
-    (λ _ → Lift ⊥)
-    (λ b₂ → Lift {ℓ = a} (b₁ ≡ b₂)))
+    (λ _ → Lift _ ⊥)
+    (λ b₂ → Lift a (b₁ ≡ b₂)))
 
 F-lemma : (x : A ⊎ B) → F x x
 F-lemma = case (λ x → F x x) (λ _ → lift refl) (λ _ → lift refl)

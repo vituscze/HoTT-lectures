@@ -6,4 +6,4 @@ open import NTypes
 open import Types
 
 ¬-isProp : ∀ {a} {A : Set a} → isProp (¬ A)
-¬-isProp x _ = funext λ _ → 0-elim (x _)
+¬-isProp ¬a _ = funext λ a → 0-elim (¬a a)
